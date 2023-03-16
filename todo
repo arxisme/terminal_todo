@@ -1,0 +1,66 @@
+
+
+import colorama
+from colorama import Fore
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+def display_list():
+    with open('/home/blobr0pchop/todo_terminal/todo.txt', 'r') as f:
+        for line in f:
+            print(Fore.RED + color.BOLD + line.strip())
+            
+
+def add_item():
+    item = input("Enter new to-do item: ")
+    with open('/home/blobr0pchop/todo_terminal/todo.txt', 'r' ) as f:
+        num = len(f.readlines())
+    num = num + 1
+    with open('/home/blobr0pchop/todo_terminal/todo.txt', 'a') as f:
+        f.write(str(num)+'. ' + item + '\n')
+    print("Item added.")
+
+def remove_item():
+    item = input("Enter item number to remove: ")
+    
+    id = 1
+    
+    with open('/home/blobr0pchop/todo_terminal/todo.txt', 'r') as f:
+        lines = f.readlines()
+    with open('/home/blobr0pchop/todo_terminal/todo.txt', 'w') as f:
+        for line in lines:
+               
+               if line.strip().split('.' , 1)[0] != item:
+                        newline = str(id) + '.' + line.split('.' , 1 )[1]
+                        f.write(newline)
+                        id = id + 1
+
+               
+        
+    print("Item removed.")
+
+while True:
+    print(Fore.WHITE+ color.BOLD + "To-Do List:")
+    display_list()
+    print("\n")
+    print(Fore.WHITE + "Menu:")
+    print(Fore.WHITE + "1. Add item")
+    print(Fore.WHITE + "2. Remove item")
+    print(Fore.WHITE + "3. Quit")
+    choice = input("Enter choice: ")
+    if choice == '1':
+        add_item()
+    elif choice == '2':
+        remove_item()
+    elif choice == 'q' or choice == '3':
+        break
+    else:
+        print("Invalid choice.")
