@@ -20,4 +20,4 @@ Just run the **install.py**
 python3 install.py
 ```
 
-to run the app from any as shown in the above screenshot add your user directory ie **"~/"** to your path variable
+to run the app from anywhere as shown in the above screenshot ,add your user directory ie **"~/"** to your path variable
